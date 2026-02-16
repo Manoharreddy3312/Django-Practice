@@ -7,6 +7,6 @@ urlpatterns = [
     path('funtime/',views.husharu),
     path('djtillu/',views.djtillu),
     path('kik/',views.kik),
-    path('don/',views.don)
+    path('don/',views.don),
    
 ]

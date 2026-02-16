@@ -5,14 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Don</title>
+    <title>Husharu</title>
 
     <style>
-        #husharu {
-            text-align: center;
+        #husharu{
+       text-align: center;
 
         }
-
         .husharu_video {
             width: 500px;
             height: 400px;
@@ -24,10 +23,9 @@
             width: 900px;
             font-size: 32px;
             margin-left: 20px;
-            margin-left: 260px;
-            background-color: white;
+           margin-left: 260px;
+           background-color: white;
         }
-
         #background-video {
             position: fixed;
             right: 0;
@@ -36,44 +34,50 @@
             min-height: 100%;
             z-index: -1;
         }
-
         #movie {
             display: flex;
             justify-content: center;
         }
-
-        #songs {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        audio {
-            margin: 0 10px;
-        }
+            #songs {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            audio {
+                margin: 0 10px;
+            }
     </style>
 </head>
 
 <body>
 
-    <video autoplay muted loop id="background-video">
-        <source src="{% static 'clips/djtbg.mp4' %}" type="video/mp4">
-    </video>
+
+
+
+     <video autoplay muted loop id="background-video">
+        <source src="{% static 'clips/husharubg.mp4' %}" type="video/mp4">
+   </video>
     <div id="husharu">
-        <h1 style="align-items: center;">Don</h1>
+        <h1 style="align-items: center;">Husharu</h1>
         <div id="movie">
-            <video src="{% static 'clips/djt1.mp4' %}" autoplay muted class="husharu_video"></video>
-            <video src="{% static 'clips/djt2.mp4' %}" autoplay muted class="husharu_video"></video>
+            <video src="{% static 'clips/husharu1.mp4' %}" autoplay muted class="husharu_video"></video>
+
+            <video src="{% static 'clips/husharu2.mp4' %}" autoplay muted class="husharu_video"></video>
         </div>
         <div id="songs">
-            <audio src="{% static 'songs/dj1.mp3' %}" controls></audio>
-            <audio src="{% static 'songs/dj1.mp4' %}" autoplay muted 
-        </div>
-        <div id="songs">
-            <audio src="{% static 'songs/don1.mp3' %}" controls></audio>
+            <audio src="{% static 'songs/husharu1.mp3' %}" controls></audio>
+            <audio src="{% static 'songs/husharu2.mp3' %}" controls></audio>
+            <audio src="{% static 'songs/husharu3.mp3' %}" controls></audio>
+            <audio src="{% static 'songs/husharu4.mp3' %}" controls></audio>
         </div>
         <h2>Description:</h2>
-        <p class="description">Description for the Don movie goes here.</p>
+        <p class="description">Husharu is a 2018 Indian Telugu-language action comedy film directed by Shiva Nirvana and
+            produced by Dil Raju under his banner Sri Venkateswara Creations. The film stars Sharwanand and Ruhani
+            Sharma, with Vennela Kishore, Naresh, and Subbaraju in supporting roles. The music was composed by Devi Sri
+            Prasad.</p>
+
     </div>
+    
 </body>
+
 </html>
