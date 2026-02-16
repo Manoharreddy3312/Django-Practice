@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Husharu</title>
+
+    <style>
+        #husharu {
+            text-align: center;
+
+        }
+
+        .husharu_video {
+            width: 500px;
+            height: 400px;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .description {
+            width: 900px;
+            font-size: 32px;
+            margin-left: 20px;
+            margin-left: 260px;
+            background-color: white;
+        }
+
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+
+        #movie {
+            display: flex;
+            justify-content: center;
+        }
+
+        #songs {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        audio {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <video autoplay muted loop id="background-video">
+        <source src="{% static 'clips/djtbg.mp4' %}" type="video/mp4">
+    </video>
+    <div id="husharu">
+        <h1 style="align-items: center;">Husharu</h1>
+        <div id="movie">
+            <video src="{% static 'clips/djt1.mp4' %}" autoplay muted class="husharu_video"></video>
+
+            <video src="{% static 'clips/djt2.mp4' %}" autoplay muted class="husharu_video"></video>
+        </div>
+        <div id="songs">
+            <audio src="{% static 'songs/dj1.mp3' %}" controls></audio>
+            <audio src="{% static 'songs/dj2.mp3' %}" controls></audio>
+            <audio src="{% static 'songs/dj3.mp3' %}" controls></audio>
+        </div>
+        <h2>Description:</h2>
+        <p class="description">
+            DJ Tillu is a Telugu-language romantic comedy film that follows the story of a carefree and mischievous
+            young man named Tillu, who is known for his love for music and his knack for getting into trouble. The film
+            explores Tillu's journey as he navigates through various comedic situations, romantic escapades, and
+            unexpected challenges in his life. With a blend of humor, romance, and music, DJ Tillu offers an
+            entertaining and lighthearted cinematic experience for audiences.
+        </p>
+
+    </div>
+
+</body>
+
+</html>

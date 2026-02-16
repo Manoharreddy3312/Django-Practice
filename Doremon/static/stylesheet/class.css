@@ -1,0 +1,14 @@
+ .para{
+            margin: 4vw 0 0 2vw;
+            font-size: 2vw;
+            text-align: justify;
+        }
+.doremon_imgs{
+    border-radius: 1.25vw;
+    border: 0.2vw solid black;
+    width: 25vw;
+    height: auto;
+    position: relative;
+    top: 9.5vw;
+    left: 2.5vw;
+}

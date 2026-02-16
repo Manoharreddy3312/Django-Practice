@@ -1,0 +1,9 @@
+#paragraph{
+            width:70%;
+            height:40vh;
+            float: left;
+        }
+
+li:hover{
+            color:white;
+        }

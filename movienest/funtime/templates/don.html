@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don</title>
+
+    <style>
+        #husharu {
+            text-align: center;
+
+        }
+
+        .husharu_video {
+            width: 500px;
+            height: 400px;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .description {
+            width: 900px;
+            font-size: 32px;
+            margin-left: 20px;
+            margin-left: 260px;
+            background-color: white;
+        }
+
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+
+        #movie {
+            display: flex;
+            justify-content: center;
+        }
+
+        #songs {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        audio {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <video autoplay muted loop id="background-video">
+        <source src="{% static 'clips/djtbg.mp4' %}" type="video/mp4">
+    </video>
+    <div id="husharu">
+        <h1 style="align-items: center;">Don</h1>
+        <div id="movie">
+            <video src="{% static 'clips/djt1.mp4' %}" autoplay muted class="husharu_video"></video>
+            <video src="{% static 'clips/djt2.mp4' %}" autoplay muted class="husharu_video"></video>
+        </div>
+        <div id="songs">
+            <audio src="{% static 'songs/dj1.mp3' %}" controls></audio>
+            <audio src="{% static 'songs/dj1.mp4' %}" autoplay muted 
+        </div>
+        <div id="songs">
+            <audio src="{% static 'songs/don1.mp3' %}" controls></audio>
+        </div>
+        <h2>Description:</h2>
+        <p class="description">Description for the Don movie goes here.</p>
+    </div>
+</body>
+</html>
