@@ -1,11 +1,12 @@
+
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('doremon',views.doremon),
-    path('nobitha',views.nobitha),
-    path('shizuka',views.shizuka),
-    path('suneo',views.suneo),
-    path('geion',views.geion),
-    path('dekisugi',views.dekisugi),
+    path('',views.doremon,name='home'),
+    path('nobitha',views.nobitha,name="nobitha"),
+    path('shizuka',views.shizuka,name="shizuka"),
+    path('suneo',views.suneo,name="suneo"),
+    path('geion',views.geion,name="geion"),
+    path('dekisugi',views.dekisugi,name = "dekisugi"),
 ]
