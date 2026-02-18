@@ -1,0 +1,42 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="hero">
+    <img src="{% static 'images/banner.jpg' %}" alt="Banner">
+</div>
+
+<!-- Products Section -->
+<h2 class="section-title">Top Deals</h2>
+
+<div class="products">
+
+    <div class="card">
+        <img src="{% static 'images/mobile.jpg' %}" alt="Mobiles">
+        <h3>Mobiles</h3>
+        <p>Starting from ₹9,999</p>
+    </div>
+
+    <div class="card">
+        <img src="{% static 'images/laptop.jpg' %}" alt="Laptops">
+        <h3>Laptops</h3>
+        <p>Up to 40% Off</p>
+    </div>
+
+    <div class="card">
+        <img src="{% static 'images/fashion.jpg' %}" alt="Fashion">
+        <h3>Fashion</h3>
+        <p>Min 50% Discount</p>
+    </div>
+
+    <div class="card">
+        <img src="{% static 'images/tv.jpg' %}" alt="TV">
+        <h3>Smart TVs</h3>
+        <p>Best Selling TVs</p>
+    </div>
+
+</div>
+
+{% endblock %}

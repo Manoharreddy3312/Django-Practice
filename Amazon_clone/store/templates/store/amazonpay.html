@@ -1,0 +1,49 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="pay-container">
+
+    <!-- Banner -->
+    <div class="pay-banner">
+        <img src="{% static 'images/pay_banner.jpg' %}" alt="Amazon Pay">
+    </div>
+
+    <!-- Wallet -->
+    <div class="wallet-card">
+        <h2>Your Wallet Balance</h2>
+        <p class="balance">₹2,500</p>
+        <button>Add Money</button>
+    </div>
+
+    <!-- Services -->
+    <h2 class="pay-title">Pay Bills & Recharge</h2>
+
+    <div class="pay-grid">
+
+        <div class="pay-card">
+            <img src="{% static 'images/mobile_recharge.jpg' %}">
+            <h3>Mobile Recharge</h3>
+        </div>
+
+        <div class="pay-card">
+            <img src="{% static 'images/electricity.jpg' %}">
+            <h3>Electricity Bill</h3>
+        </div>
+
+        <div class="pay-card">
+            <img src="{% static 'images/dth.jpg' %}">
+            <h3>DTH Recharge</h3>
+        </div>
+
+        <div class="pay-card">
+            <img src="{% static 'images/flight.jpg' %}">
+            <h3>Flight Tickets</h3>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

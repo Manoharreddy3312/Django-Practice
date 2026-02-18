@@ -1,0 +1,48 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="mobiles-container">
+
+    <h1>Latest Mobiles</h1>
+
+    <div class="mobile-grid">
+
+        <div class="mobile-card">
+            <img src="{% static 'images/iphone.jpg' %}" alt="iPhone">
+            <h3>iPhone 15</h3>
+            <p class="price">₹79,999</p>
+            <p class="offer">10% Off | No Cost EMI</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="mobile-card">
+            <img src="{% static 'images/samsung.jpg' %}" alt="Samsung">
+            <h3>Samsung Galaxy S23</h3>
+            <p class="price">₹69,999</p>
+            <p class="offer">15% Discount</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="mobile-card">
+            <img src="{% static 'images/oneplus.jpg' %}" alt="OnePlus">
+            <h3>OnePlus 12</h3>
+            <p class="price">₹59,999</p>
+            <p class="offer">Exchange Offer Available</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="mobile-card">
+            <img src="{% static 'images/realme.jpg' %}" alt="Realme">
+            <h3>Realme GT</h3>
+            <p class="price">₹29,999</p>
+            <p class="offer">Flat ₹2000 Off</p>
+            <button>Add to Cart</button>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

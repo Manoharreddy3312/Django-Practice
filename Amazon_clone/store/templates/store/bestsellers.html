@@ -1,0 +1,48 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="bestseller-container">
+
+    <h1>Amazon Bestsellers</h1>
+
+    <div class="bestseller-grid">
+
+        <div class="bestseller-card">
+            <img src="{% static 'images/book.jpg' %}">
+            <h3>Atomic Habits</h3>
+            <p class="price">₹499</p>
+            <p class="rating">⭐⭐⭐⭐☆ (4.5)</p>
+            <button>Buy Now</button>
+        </div>
+
+        <div class="bestseller-card">
+            <img src="{% static 'images/headphones.jpg' %}">
+            <h3>Noise Headphones</h3>
+            <p class="price">₹1,299</p>
+            <p class="rating">⭐⭐⭐⭐⭐ (4.8)</p>
+            <button>Buy Now</button>
+        </div>
+
+        <div class="bestseller-card">
+            <img src="{% static 'images/watch.jpg' %}">
+            <h3>Smart Watch</h3>
+            <p class="price">₹2,499</p>
+            <p class="rating">⭐⭐⭐⭐☆ (4.4)</p>
+            <button>Buy Now</button>
+        </div>
+
+        <div class="bestseller-card">
+            <img src="{% static 'images/shoes.jpg' %}">
+            <h3>Sports Shoes</h3>
+            <p class="price">₹1,999</p>
+            <p class="rating">⭐⭐⭐⭐⭐ (4.7)</p>
+            <button>Buy Now</button>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

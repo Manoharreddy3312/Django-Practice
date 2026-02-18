@@ -1,0 +1,49 @@
+{% extends 'store/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="fresh-container">
+
+    <div class="fresh-hero">
+        <h1>Fresh Deals</h1>
+        <p>Discover amazing products at unbeatable prices</p>
+        <button class="shop-btn">Shop Now</button>
+    </div>
+
+    <div class="fresh-products">
+
+        <div class="fresh-card">
+            <img src="{% static 'images/product1.jpg' %}" alt="">
+            <h3>Wireless Headphones</h3>
+            <p>₹1,499</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="fresh-card">
+            <img src="{% static 'images/product2.jpg' %}" alt="">
+            <h3>Smart Watch</h3>
+            <p>₹2,999</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="fresh-card">
+            <img src="{% static 'images/product3.jpg' %}" alt="">
+            <h3>Bluetooth Speaker</h3>
+            <p>₹899</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="fresh-card">
+            <img src="{% static 'images/product4.jpg' %}" alt="">
+            <h3>Gaming Mouse</h3>
+            <p>₹599</p>
+            <button>Add to Cart</button>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

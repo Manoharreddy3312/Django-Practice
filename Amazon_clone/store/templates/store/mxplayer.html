@@ -1,0 +1,56 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="mx-container">
+
+    <!-- MX Menu -->
+    <div class="mx-menu">
+        <a href="#">Home</a>
+        <a href="#">New & Hot</a>
+        <a href="#">Web Series</a>
+        <a href="#">Movies</a>
+        <a href="#">Romantic</a>
+        <a href="#">Telugu</a>
+        <a href="#">Tamil</a>
+    </div>
+
+    <!-- Hero Banner -->
+    <div class="mx-hero">
+        <img src="{% static 'images/mx_banner.jpg' %}" alt="MX Banner">
+    </div>
+
+    <!-- Web Series Section -->
+    <h2 class="mx-title">Trending Web Series</h2>
+
+    <div class="mx-row">
+        <div class="mx-card">
+            <img src="{% static 'images/web1.jpg' %}">
+            <p>Campus Diaries</p>
+        </div>
+
+        <div class="mx-card">
+            <img src="{% static 'images/web2.jpg' %}">
+            <p>Aashram</p>
+        </div>
+    </div>
+
+    <!-- Movies Section -->
+    <h2 class="mx-title">Popular Movies</h2>
+
+    <div class="mx-row">
+        <div class="mx-card">
+            <img src="{% static 'images/movie1.jpg' %}">
+            <p>RRR</p>
+        </div>
+
+        <div class="mx-card">
+            <img src="{% static 'images/movie2.jpg' %}">
+            <p>KGF Chapter 2</p>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

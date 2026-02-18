@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amazon Clone</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+
+     <a href="{% url 'home' %}" class="logo">Amazon Clone</a>
+
+    
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'fresh' %}">Fresh</a></li>
+        <li><a href="{% url 'mobiles' %}">Mobiles</a></li>
+       <li><a href="{% url 'bestsellers' %}">Bestsellers</a></li>
+        <li><a href="{% url 'amazonpay' %}">Amazon Pay</a></li>
+        <li><a href="{% url 'mxplayer' %}">MX Player</a></li>
+    </ul>
+</div>
+
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+    <footer class="footer">
+        <div class="footer-container">
+
+            <div class="footer-section">
+                <h3>Get to Know Us</h3>
+                <p>About Us</p>
+                <p>Careers</p>
+                <p>Press Releases</p>
+                <p>Amazon Science</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect with Us</h3>
+                <p>Facebook</p>
+                <p>Twitter</p>
+                <p>Instagram</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Make Money with Us</h3>
+                <p>Sell on Amazon</p>
+                <p>Affiliate Program</p>
+                <p>Advertise Your Products</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Let Us Help You</h3>
+                <p>Your Account</p>
+                <p>Returns Centre</p>
+                <p>Help</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Amazon Clone | Designed by Manohar Reddy
+        </div>
+    </footer>
+
+</body>
+</html>
