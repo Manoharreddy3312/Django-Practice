@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- {{name}} -->
+    <!-- {{data}} -->
+
+    
+    
+    <table style="border:2px solid red;">
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>mail</th>
+            <th>college</th>
+            <th>Stream</th>
+            <th>Branch</th>
+            <th>Gender</th>
+            <th>Percentage</th>
+            <th>YOP</th>
+            <th>DOB</th>
+            <th>Address</th>
+            <th>Attendence</th>
+
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.phone}}</td>
+            <td>{{i.mail}}</td>
+            <td>{{i.clg}}</td>
+            <td>{{i.stream}}</td>
+            <td>{{i.branch}}</td>
+            <td>{{i.gender}}</td>
+            <td>{{i.percentage}}</td>
+            <td>{{i.yop}}</td>
+            <td>{{i.dob}}</td>
+            <td>{{i.address}}</td>
+            <td>{{i.attendance}}</td>
+
+            
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+  
+</body>
+</html>
