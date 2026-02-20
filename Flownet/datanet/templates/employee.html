@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Data</title>
+</head>
+
+<style>
+    @font-face {
+    font-family: 'ProductSans'; 
+    src: url("{% static 'fonts/ProductSansRegular.ttf' %}") format("truetype");
+}
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        overflow-x: hidden;
+    }
+    #main_container {
+        width: 100vw;
+        height: 500vh;
+    }
+
+    .container {
+        width: 20vw;
+        height: 25vw;
+        border-radius: 15px;
+        box-shadow: inset 20 10 20 22px black;
+        background-color: teal;
+        margin: 2vw 6.35vw;
+        float: left;
+        transition: transform 500ms;
+    }
+    .container img{
+            position: relative;
+            top: 2vw;
+            left: 7.5vw;
+            width: 5vw;
+            border-radius: 3vw;            
+        }
+    li {
+        font-family: 'ProductSans', sans-serif;
+        list-style-type: none;
+        font-size: 1.5vw;
+    }
+    .details{
+        width: 18vw;
+        height: 20vw;
+        padding: 40px 20px;
+        margin: 2vw 0 0 2vw;
+    }
+    .container:hover{
+        transform: rotateY(180deg);
+    }
+    .container:hover>img,.container:hover .details>ul:first-child li{
+        opacity: 0;
+    }
+    .container:hover .salary{
+        opacity: 1;
+    }
+    .container.male {
+        background-color: rgb(0, 172, 169);
+    }
+    
+    .container.female {
+        background-color: rgb(255, 59, 59);
+    }
+    .salary{
+        opacity: 0;
+        transform: rotateY(180deg);
+        position: relative;
+        bottom:9vw;
+        right: 4vw;
+    }
+</style>
+
+<body>
+    <div id="main_container">
+        {% for i in data%}
+        <div class="container {% if i.gender == 'male' %}male{% else %}female{% endif %}">
+            {% if i.gender == 'male' %}
+            <img src="{% static 'profile/men.jpg' %}">
+            
+            {% else %}
+            <img src="{% static 'profile/girl.jpg' %}">
+            {% endif %}
+            <div class="details">
+            <ul>
+                <li>ID : {{i.id}}</li>
+                <li>Name : {{i.name}}</li>
+                <li>DOB : {{i.dob}}</li>
+                <li>Role : {{i.role}}</li>
+                <li>DOJ : {{i.doj}}</li>
+                <li>Address : {{i.address}}</li>
+                <li>Blood : {{i.blood_group}}</li>
+            </ul>
+            <ul class="salary">
+                <li>Salary : {{i.sal}}</li>
+            </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>
