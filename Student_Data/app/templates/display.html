@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display page</title>
+</head>
+<body>
+    <a href="{% url 'home' %}">Home</a>
+    <hr>
+    <h1>STUDENT LIST</h1>
+    {% for i in data %}
+
+        <p>{{i.name}}</p> 
+
+    {%  endfor %}  
+</body>
+</html>
