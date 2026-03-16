@@ -1,0 +1,35 @@
+<form action="" method="post">
+    {% csrf_token %}
+    <h1 style="text-align: center; color: red;">STUDENT FORM</h1>
+    <label style="font-size: 20px;"  for="">Name : </label> <input type="text" name="name"  value="{{data.name}}" id=""> <br><br>
+    <label style="font-size: 20px;" for="">Mobile : </label> <input type="text" name="mobile"  value="{{data.mobile}}" id="">
+    <br><br>
+    <label style="font-size: 20px;"for="">Email : </label> <input type="text" name="email"  value="{{data.email}}"  id="">
+    <br><br>
+    <label style="font-size: 20px;">DOB : </label> <input type="date" name="DOB"  value="{{data.dob|date:'Y-m-d'}}" id="">
+    <br><br>
+    <label style="font-size: 20px;"  for="">Qualification : </label> <input type="text"name="qualification" value="{{data.qualification}}" id="">
+    <br><br>
+    <label style="font-size: 20px;"for="">Stream : </label> <input type="text" name="stream"  value="{{data.stream}}"  id="">
+    <br><br>
+    <label style="font-size: 20px;" for="">Gender :
+        <select name="gender" id="" style="height:40px; border: 2px solid rgb(132, 88, 88); border-radius: 5px;">
+            <option value="{{data.gender}}">{{data.gender}}</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </label>
+
+    <br><br>
+  
+    
+    {% if var %}
+    <button type="submit">UPDATE</button>
+    {% else %}
+    <button type="submit">Registert</button>
+
+    {% endif %}
+    
+
+
+</form>

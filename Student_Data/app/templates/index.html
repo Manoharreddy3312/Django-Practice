@@ -44,26 +44,8 @@
 </head>
 
 <body>
-    <form action="" method="post">
-        {% csrf_token %}
-        <h1 style="text-align: center; color: red;">STUDENT FORM</h1>
-        <label style="font-size: 20px;" for="">Name : </label> <input type="text" name="name" id=""> <br><br>
-        <label style="font-size: 20px;" for="">Mobile : </label> <input type="text" name="mobile" id=""> <br><br>
-        <label style="font-size: 20px;" for="">Email : </label> <input type="text" name="email" id=""> <br><br>
-        <label style="font-size: 20px;" for="">DOB : </label> <input type="date" name="DOB" id=""> <br><br>
-        <label style="font-size: 20px;" for="">Qualification : </label> <input type="text" name="qualification" id="">
-        <br><br>
-        <label style="font-size: 20px;" for="">Stream : </label> <input type="text" name="stream" id=""> <br><br>
-        <label style="font-size: 20px;" for="">Gender :
-            <select name="gender" id="" style="height:40px; border: 2px solid rgb(132, 88, 88); border-radius: 5px;">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-        </label>
-
-        <br><br>
-        <button type="submit">Submit</button>
-    </form>
+ {%  include 'form.html' %}
+   
 </body>
 
 </html>

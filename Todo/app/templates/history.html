@@ -1,0 +1,30 @@
+ {% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<center><h1 style="margin-bottom: 15px;">Deleted Task History</h1></center>
+<center>
+    <table>
+    <tr>
+        <th>Task</th>
+        <th>Description</th>
+    </tr>
+
+    {% for i in data %}
+       <tr>
+           <td>{{i.Task}}</td>
+           <td>{{i.Description}}</td>
+       </tr>
+    {%endfor%}   
+
+</table>
+</center>
+
+
+
+{% endblock content %}
+
+
+
+
+

@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{ % load static %}
+{% block content %}
+    {% for i in data %}
+        <p>
+            <a href="{% url 'single' i.id %}">{{i.Task}}</a>
+        </p>
+   
+    <!-- <p>{{i.task}}</p>
+    <p>{{i.description}}</p> -->
+
+     
+    {% endfor %}
+{% endblock content %}

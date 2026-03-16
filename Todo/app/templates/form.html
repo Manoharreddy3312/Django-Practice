@@ -1,0 +1,25 @@
+<form action="" method="POST">
+    {% csrf_token %}
+    
+   <fieldset>
+     <label for="">Task : </label> <input type="text" name="task"  value="{{data.task}}" id=""> 
+    <br><br>
+
+    <label for="">Description : </label> 
+    <input type="text" name="description"  value="{{data.description}}" id="">
+  
+
+    <br><br>
+  
+    
+    {% if var %}
+    <button type="submit" style="margin-left: 20px;">UPDATE</button>
+    {% else %}
+    <button type="submit" style="margin-left: 20px;">Register</button>
+   </fieldset>
+
+    {% endif %}
+    
+
+
+</form>

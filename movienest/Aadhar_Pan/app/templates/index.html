@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+<head>
+
+<title>Aadhaar Search</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f2f2;
+text-align:center;
+}
+
+/* SEARCH BOX */
+
+.search{
+margin-top:30px;
+}
+
+input{
+padding:10px;
+width:260px;
+font-size:16px;
+}
+
+button{
+padding:10px 20px;
+background:#0a66c2;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+/* MAIN CONTAINER */
+
+.container{
+margin-top:40px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:40px;
+}
+
+/* AADHAAR SECTION */
+
+.aadhar-section{
+display:flex;
+gap:20px;
+}
+
+/* CARD */
+
+.card{
+width:500px;
+background:white;
+border-radius:8px;
+border:2px solid #ccc;
+padding:15px;
+text-align:left;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* TRICOLOR BAR */
+
+.tricolor{
+height:8px;
+background:linear-gradient(90deg,#ff9933,#ffffff,#138808);
+margin-bottom:10px;
+}
+
+/* AADHAAR FRONT */
+
+.aadhar-body{
+display:flex;
+gap:15px;
+}
+
+.photo{
+width:120px;
+height:140px;
+border:1px solid black;
+}
+
+.details p{
+margin:3px;
+font-size:15px;
+}
+
+.aadhar-number{
+text-align:center;
+font-size:26px;
+font-weight:bold;
+letter-spacing:3px;
+margin-top:10px;
+}
+
+.tagline{
+text-align:center;
+font-weight:bold;
+margin-top:6px;
+}
+
+/* AADHAAR BACK */
+
+.back-flex{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:20px;
+}
+
+.qr{
+width:130px;
+height:130px;
+}
+
+/* PAN CARD */
+
+.pan-card{
+width:520px;
+background:linear-gradient(135deg,#cfe9ff,#9ed0f5,#cfe9ff);
+border-radius:12px;
+padding:20px;
+border:2px solid #777;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+text-align:left;
+}
+
+.pan-body{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.pan-photo{
+width:120px;
+height:130px;
+border:1px solid black;
+}
+
+.pan-details{
+flex:1;
+margin-left:20px;
+}
+
+.pan-qr{
+width:110px;
+height:110px;
+}
+
+.pan-number{
+font-size:22px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Aadhaar Search System</h2>
+
+<div class="search">
+
+<form method="post">
+{% csrf_token %}
+
+<input type="text" name="aadhar" placeholder="Enter Aadhaar Number">
+
+<button type="submit">Search</button>
+
+</form>
+
+</div>
+
+{% if data %}
+
+<div class="container">
+
+<!-- ================= AADHAAR FRONT + BACK ================= -->
+
+<div class="aadhar-section">
+
+<!-- AADHAAR FRONT -->
+
+<div class="card">
+
+<div class="tricolor"></div>
+
+<div class="aadhar-body">
+
+{% if data.image %} <img src="{{data.image.url}}" class="photo">
+{% endif %}
+
+<div class="details">
+
+<p><b>Name:</b> {{data.first_name}} {{data.last_name}}</p>
+
+<p><b>Father:</b> {{data.father}}</p>
+
+<p><b>DOB:</b> {{data.dob}}</p>
+
+<p><b>Gender:</b> {{data.gender}}</p>
+
+<p><b>Mobile:</b> {{data.phone}}</p>
+
+</div>
+
+</div>
+
+<div class="aadhar-number">
+{{data.aadhar}}
+</div>
+
+<div class="tagline">
+MERA AADHAAR MERI PEHCHAAN
+</div>
+
+</div>
+
+<!-- AADHAAR BACK -->
+
+<div class="card">
+
+<div class="tricolor"></div>
+
+<h3>Address</h3>
+
+<p>
+{{data.address}}, {{data.city}}, {{data.state}}
+</p>
+
+<div class="back-flex">
+
+<div>
+
+<p><b>Aadhaar Number</b></p>
+
+<h2>{{data.aadhar}}</h2>
+
+</div>
+
+<img src="{% static 'images/qr_code.png' %}" class="qr">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= PAN CARD ================= -->
+
+<div class="pan-card">
+
+<div class="pan-body">
+
+{% if data.image %} <img src="{{data.image.url}}" class="pan-photo">
+{% endif %}
+
+<div class="pan-details">
+
+<div class="pan-number">
+PAN : {{data.pan}}
+</div>
+
+<p><b>Name:</b> {{data.first_name}} {{data.last_name}}</p>
+
+<p><b>Father Name:</b> {{data.father}}</p>
+
+<p><b>Date of Birth:</b> {{data.dob}}</p>
+
+</div>
+
+<img src="{% static 'images/qr_code.png' %}" class="pan-qr">
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+</body>
+</html>

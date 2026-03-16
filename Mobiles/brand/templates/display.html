@@ -1,0 +1,50 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display page</title>
+</head>
+<body>
+    <a href="{% url 'home' %}">Home</a>
+    <hr>
+    <h1>MOBILES LIST</h1>
+    {% for i in data %}
+
+        <p>{{i.name}}</p> 
+
+    {%  endfor %}  
+</body>
+</html> -->
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobiles Form</title>
+</head>
+<body>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <label>Name :</label>
+    <input type="text" name="name"><br><br>
+
+    <label>Brand :</label>
+    <input type="text" name="brand"><br><br>
+
+    <label>Price :</label>
+    <input type="text" name="price"><br><br>
+
+    <label>Battery :</label>
+    <input type="text" name="battery"><br><br>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+</body>
+</html>
