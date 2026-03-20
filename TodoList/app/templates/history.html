@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+{% block content %}
+
+<h1 class="page-title">Completed Tasks</h1>
+
+<div class="table-container">
+
+<table class="todo-table">
+
+<tr>
+<th>ID</th>
+<th>Task</th>
+<th>View</th>
+</tr>
+
+{% for i in data %}
+<tr>
+<td>{{ i.id }}</td>
+<td>{{ i.task }}</td>
+<td>
+<a href="{% url 'single' i.id %}">View</a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock content %}

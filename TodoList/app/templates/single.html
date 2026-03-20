@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="task-wrapper">
+
+<div class="task-card">
+
+<h1>Todo Task</h1>
+
+<div class="task-details">
+<p><strong>Task:</strong> {{ data.task }}</p>
+<p><strong>Description:</strong> {{ data.description }}</p>
+</div>
+
+<div class="task-buttons">
+<a href="{% url 'update' data.id %}">
+<button class="edit-btn">Edit</button>
+</a>
+
+<a href="{% url 'delete' data.id %}">
+<button class="complete-btn">Complete</button>
+</a>
+</div>
+
+</div>
+
+</div>
+
+{% endblock content %}

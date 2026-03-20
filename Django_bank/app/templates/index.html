@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center; font-size: 24px; font-weight: bold; color: #4CAF50;">Welcome to Bank</h1>
+    <form action="" method="post" style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="width: 100px; height: 30px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Create Account</button>
+    </form>
+</body>
+</html>

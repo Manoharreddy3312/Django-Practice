@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .page-bg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+    }
+
+    /* Form Card */
+    .form-card {
+        background: white;
+        padding: 35px;
+        width: 420px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-card h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #0d6efd;
+    }
+
+    form p {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
+    form label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    form input,
+    form select,
+    form textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 10px;
+        background: #0d6efd;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .btn-submit:hover {
+        background: #084298;
+    }
+
+
+    .success-card {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+        width: 400px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 25px #00f7ff;
+        animation: fadeIn 1s ease-in-out;
+    }
+</style>
+
+<div class="page-bg">
+
+    <div class="form-card">
+
+        <h3>🏦 Create Bank Account</h3>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="btn-submit">Create Account</button>
+
+        </form>
+
+        {% if success %}
+        <p style="color: green; text-align: center;">Account created successfully!</p>
+        {% endif %}
+
+        {% if error %}
+        <p style="color: red; text-align: center;">{{ error }}</p>
+        {% endif %}
+
+    </div>
+
+
+</div>
+</div>
+
+
+</div>
+
+{% endblock %}

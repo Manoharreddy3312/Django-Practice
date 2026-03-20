@@ -1,0 +1,18 @@
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <label>TASK:</label>
+    <input type="text" name="task" value="{{ data.task }}" placeholder="Task">
+
+    <label>DESCRIPTION:</label>
+    <input type="text" name="description" value="{{ data.description }}" placeholder="Description">
+
+    <div class="todo-button">
+        {% if var %}
+            <input type="submit" value="Update">
+        {% else %}
+            <input type="submit" value="Add Task">
+        {% endif %}
+    </div>
+
+</form>

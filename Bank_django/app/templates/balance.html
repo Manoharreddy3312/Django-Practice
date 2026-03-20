@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+/* 🌌 Background */
+body{
+    margin:0;
+    padding:0;
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+}
+
+/* Center Container */
+.page-bg{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:90vh;
+}
+
+/* Card */
+.balance-card{
+    background: rgba(0,0,0,0.7);
+    padding:35px;
+    width:400px;
+    border-radius:15px;
+    text-align:center;
+    backdrop-filter: blur(10px);
+    box-shadow:0 0 25px #00f7ff;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Heading */
+.balance-card h3{
+    color:#00f7ff;
+    margin-bottom:20px;
+    text-shadow:0 0 10px #00f7ff, 0 0 20px #6a5acd;
+}
+
+/* Inputs */
+form input{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:8px;
+    background:rgba(255,255,255,0.1);
+    color:white;
+    outline:none;
+    transition:0.3s;
+}
+
+/* Focus Glow */
+form input:focus{
+    box-shadow:0 0 10px #00f7ff, 0 0 20px #6a5acd;
+}
+
+/* Button */
+.btn-check{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background: linear-gradient(45deg,#00f7ff,#6a5acd);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+/* Hover */
+.btn-check:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px #00f7ff,0 0 25px #6a5acd;
+}
+
+/* Balance Box */
+.balance-box{
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.1);
+    color:#00ffcc;
+    font-size:20px;
+    font-weight:bold;
+    box-shadow:0 0 15px #00ffcc;
+}
+
+/* Animation */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+</style>
+
+<div class="page-bg">
+
+<div class="balance-card">
+
+<h3>💳 Check Balance</h3>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn-check">🔍 Check</button>
+</form>
+
+{% if balance %}
+<div class="balance-box">
+    💰 Your Balance : ₹ {{ balance }}
+</div>
+{% endif %}
+
+</div>
+
+</div>
+
+{% endblock %}

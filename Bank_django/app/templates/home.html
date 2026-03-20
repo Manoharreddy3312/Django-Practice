@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+.hero{
+    height:90vh;
+    background-image:url("https://images.unsplash.com/photo-1601597111158-2fceff292cdc");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+}
+
+.hero-box{
+    background:rgba(0,0,0,0.6);
+    padding:40px;
+    border-radius:10px;
+}
+
+.hero h1{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    font-size:20px;
+}
+
+.btn{
+    padding:10px 25px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:5px;
+    text-decoration:none;
+    font-size:18px;
+}
+
+.btn:hover{
+    background:#084298;
+}
+</style>
+
+<div class="hero">
+
+<div class="hero-box">
+
+<h1>Welcome to Secure Bank</h1>
+
+<p>Your trusted partner for safe and smart banking.</p>
+
+<br>
+
+<a href="/create/" class="btn">Create Account</a>
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="task-wrapper">
+
+<div class="task-card">
+
+<h1>About This Project</h1>
+
+<p>
+This project is a <strong>Todo List web application</strong> built using the
+<strong>Django framework</strong>. It allows users to create tasks, view tasks,
+update them, and mark them as completed. The goal of this project was to
+understand how Django works in real-world web development.
+</p>
+
+<p>
+The project uses <strong>Django Template Inheritance</strong> to maintain a
+consistent layout across all pages. A base template (<b>main.html</b>) is used
+for the navigation bar and footer, while other pages such as Home, List,
+History, and Task Details extend this base template.
+</p>
+
+<p>
+Data is managed using <strong>Django ORM (Object Relational Mapping)</strong>.
+Models were created to define the task structure with fields like
+<b>task</b> and <b>description</b>. The ORM allows interaction with the
+database using Python code instead of writing raw SQL queries.
+</p>
+
+<p>
+This project also implements several important Django concepts including:
+</p>
+
+<ul style="text-align:left; margin-top:10px;">
+<li>Template inheritance</li>
+<li>Django ORM and Models</li>
+<li>URL routing</li>
+<li>Views and template rendering</li>
+<li>CSRF protection in forms</li>
+<li>CRUD operations (Create, Read, Update, Delete)</li>
+<li>Reusable templates using <b>include</b></li>
+</ul>
+
+<p style="margin-top:15px;">
+Overall, this project helped in understanding the basic workflow of a Django
+application and how backend logic connects with frontend templates to build
+a functional web application.
+</p>
+
+</div>
+
+</div>
+
+{% endblock content %}

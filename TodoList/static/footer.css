@@ -1,0 +1,13 @@
+footer{
+    background:#563939;
+    color:#ddd;
+    text-align:center;
+    padding:18px;
+    font-size:18px;
+    margin-top:auto;
+}
+
+
+footer p{
+    letter-spacing:1px;
+}

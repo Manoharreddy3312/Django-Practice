@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .pin-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+    }
+
+    form label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .pin-card {
+        background: white;
+        padding: 35px;
+        width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .pin-card h3 {
+        text-align: center;
+        color: #0d6efd;
+        margin-bottom: 20px;
+    }
+
+    /* Input Styling */
+    form input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    /* Button */
+    .pin-btn {
+        width: 100%;
+        padding: 10px;
+        background: #0d6efd;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .pin-btn:hover {
+        background: #084298;
+    }
+
+    /* Secure text */
+    .secure-text {
+        text-align: center;
+        font-size: 14px;
+        color: gray;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="pin-container">
+
+    <div class="pin-card">
+
+        <h3>🔐 Set Your ATM PIN</h3>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="pin-btn">Set PIN</button>
+
+            {% if form.errors %}
+            <p style="color: red; text-align: center;">{{ form.errors }}</p>
+            {% else %}
+            <p style="color: green; text-align: center;">PIN set successfully!</p>
+            {% endif %}
+
+        </form>
+
+        <p class="secure-text">Your PIN is securely encrypted and protected.</p>
+
+    </div>
+
+</div>
+
+{% endblock %}

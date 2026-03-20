@@ -1,71 +1,68 @@
-from django.shortcuts import render,redirect
-from .models import Todo_data
-from .models import History_Table
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
+from .forms import RegisterForm
+from django.contrib.auth.forms import AuthenticationForm
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}! You can now log in.')
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})
+
+@login_required
 def home(request):
+    # This is a placeholder for your main page after login.
+    return render(request, 'home.html')
+
+
+
+
+# Register View
+def register_view(request):
+    form = RegisterForm()
     if request.method == 'POST':
-        Task = request.POST.get('task')
-        Description = request.POST.get('description')
-        Todo_data.objects.create(Task = Task, Description = Description)
-        return redirect('display')
-    return render(request,'home.html')
-
-# def history(request):
-#     if request.method == 'POST':
-#         Task = request.POST.get('task')
-#         Description = request.POST.get('description')
-#         return redirect('display')
-#     return render(request,'history.html')
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+    return render(request, 'register.html', {'form': form})
 
 
-def display(request):
-    data = Todo_data.objects.all().order_by('-id')
-    context = {'data':data}
-    return render(request,'display.html',context)
-
-def single(request,a):
-    data = Todo_data.objects.get(id=a)
-    context = {'data':data}
-    return render(request,'single.html',context)
-
-
-
-def edit(request,b):
-    data = Todo_data.objects.get(id=b)
+# Login View
+def login_view(request):
+    form = AuthenticationForm()
     if request.method == 'POST':
-        Task = request.POST.get('task')
-        Description = request.POST.get('description')
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')
+    return render(request, 'login.html', {'form': form})
 
 
-        data.Task = Task
-        data.Description = Description
-        data.save()
-        return redirect('display')
-    
-
-    context = {'data':data,'var':True}
-    return render(request,'update.html',context)
-
-   
-
-# def history(request):
-#     hist_data = History_Table.objects.all().order_by('-id')
-#     return render(request, 'history.html', {'data': hist_data})
-
-def history(request):
-    data = History_Table.objects.all().order_by('-id')
-    return render(request,'history.html',{'data':data})
+# Logout View
+def logout_view(request):
+    logout(request)
+    return redirect('login')
 
 
-def about(request):
-    return render(request,'about.html')
 
 
-def delete(request,id):
-    data = Todo_data.objects.get(id=id)
-    # ctrweate 
-    History_Table.objects.create(Task = data.Task, Description = data.Description)
-    data.delete()
-    context = {'data':data}
-    return redirect('history')
+@login_required
+def home(request):
+    return render(request, 'home.html')
