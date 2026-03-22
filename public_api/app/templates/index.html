@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+</head>
+<body>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="text" name="country" placeholder="enter the country name" id="">
+    <button type="submit">SEARCH</button>
+</form>
+
+<h1>LIST OF COUNTRIES</h1>
+
+{% for i in data %}
+<h1> name: {{i.name.common}}</h1> <br>
+<p>
+    official {{i.name.official}}
+</p>
+
+<img src="{{i.flags.png}}" alt="">
+
+{% endfor %}
+
+</body>
+</html>

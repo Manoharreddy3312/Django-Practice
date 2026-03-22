@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 24px;
+            background: #f5f7fb;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin-bottom: 12px;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            background: #1f6feb;
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .error {
+            background: #ffe9e9;
+            color: #9b1c1c;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+        }
+
+        .list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .item {
+            background: #fff;
+            border-radius: 10px;
+            padding: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .meta {
+            color: #555;
+            font-size: 14px;
+            margin-top: 3px;
+        }
+
+        .link {
+            text-decoration: none;
+            color: #1f6feb;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Search Country Details</h1>
+        <form method="get">
+            <input type="text" name="q" placeholder="Type country name (e.g. India)" value="{{ query }}">
+            <button type="submit">Search</button>
+        </form>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        {% if query and countries %}
+        <div class="list">
+            {% for country in countries %}
+            <div class="item">
+                <div>
+                    <div><strong>{{ country.name.common }}</strong></div>
+                    <div class="meta">
+                        Capital:
+                        {% if country.capital %}{{ country.capital|join:", " }}{% else %}N/A{% endif %}
+                        | Region: {{ country.region|default:"N/A" }}
+                    </div>
+                </div>
+                <a class="link" href="{% url 'country_detail' country.cca3 %}">View Details</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% elif query and not error %}
+        <p>No countries found.</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>

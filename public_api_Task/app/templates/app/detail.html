@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Details</title>
+    <style>
+        :root {
+            --bg: #f3f6fb;
+            --card: #ffffff;
+            --text: #202938;
+            --muted: #5c6577;
+            --border: #e4e9f2;
+            --accent: #2359d4;
+            --ok: #067647;
+            --no: #b42318;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(180deg, #eef3fb 0%, var(--bg) 100%);
+            color: var(--text);
+        }
+        .container {
+            max-width: 1020px;
+            margin: 24px auto;
+            padding: 0 16px;
+        }
+        .back {
+            display: inline-block;
+            margin-bottom: 14px;
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .error {
+            background: #fee4e2;
+            color: #912018;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #fecaca;
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+            overflow: hidden;
+        }
+        .header {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .title {
+            margin: 0;
+            font-size: 32px;
+            line-height: 1.2;
+        }
+        .independence {
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 14px;
+            border: 1px solid var(--border);
+            background: #f8f9fc;
+        }
+        .independence.ok { color: var(--ok); }
+        .independence.no { color: var(--no); }
+        .media {
+            display: grid;
+            grid-template-columns: 1fr 240px;
+            gap: 16px;
+            padding: 16px 20px 2px;
+        }
+        .panel {
+            background: #f9fbff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+        }
+        .panel h3 {
+            margin: 0 0 10px;
+            font-size: 14px;
+            color: var(--muted);
+            font-weight: 700;
+        }
+        img.flag {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: #fff;
+        }
+        img.coat {
+            width: 100%;
+            max-width: 180px;
+            max-height: 180px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        .details {
+            padding: 16px 20px 20px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+        .item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            background: #fff;
+        }
+        .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--muted);
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+        .value {
+            font-size: 15px;
+            line-height: 1.45;
+            word-break: break-word;
+        }
+        .value a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .value a:hover { text-decoration: underline; }
+        @media (max-width: 860px) {
+            .media { grid-template-columns: 1fr; }
+            .details { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back" href="{% url 'country_search' %}">&larr; Back to Search</a>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% elif country %}
+            <div class="card">
+                <div class="header">
+                    <h1 class="title">{{ country.name }}</h1>
+                    <div class="independence {% if country.independent %}ok{% else %}no{% endif %}">
+                        Independence: {% if country.independent %}✓{% else %}✗{% endif %}
+                    </div>
+                </div>
+
+                <div class="media">
+                    <div class="panel">
+                        <h3>Flag</h3>
+                        {% if country.flag_image %}
+                            <img class="flag" src="{{ country.flag_image }}" alt="Flag of {{ country.name }}">
+                        {% else %}
+                            <div class="value">N/A</div>
+                        {% endif %}
+                    </div>
+                    <div class="panel">
+                        <h3>Coat of Arms</h3>
+                        {% if country.coat_of_arms %}
+                            <img class="coat" src="{{ country.coat_of_arms }}" alt="Coat of arms of {{ country.name }}">
+                        {% else %}
+                            <div class="value">N/A</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="details">
+                    <div class="item"><div class="label">Capital</div><div class="value">{{ country.capital }}</div></div>
+                    <div class="item"><div class="label">Region</div><div class="value">{{ country.region }}</div></div>
+                    <div class="item"><div class="label">Sub Region</div><div class="value">{{ country.subregion }}</div></div>
+                    <div class="item"><div class="label">Borders Sharing</div><div class="value">{{ country.borders }}</div></div>
+                    <div class="item"><div class="label">Area</div><div class="value">{{ country.area }}</div></div>
+                    <div class="item">
+                        <div class="label">Google Maps</div>
+                        <div class="value">
+                            {% if country.google_maps %}
+                                <a href="{{ country.google_maps }}" target="_blank" rel="noopener">Open Map</a>
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="item"><div class="label">Population</div><div class="value">{{ country.population }}</div></div>
+                    <div class="item"><div class="label">Time Zone</div><div class="value">{{ country.timezones }}</div></div>
+                    <div class="item"><div class="label">Continent</div><div class="value">{{ country.continents }}</div></div>
+                    <div class="item">
+                        <div class="label">Currency (Symbol, Name)</div>
+                        <div class="value">
+                            {% if country.currencies %}
+                                {% for item in country.currencies %}
+                                    {{ item.symbol }} ({{ item.name }}){% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="item"><div class="label">Languages</div><div class="value">{{ country.languages }}</div></div>
+                    <div class="item"><div class="label">Latitude</div><div class="value">{{ country.latitude }}</div></div>
+                    <div class="item"><div class="label">Longitude</div><div class="value">{{ country.longitude }}</div></div>
+                    <div class="item"><div class="label">Start of the Week</div><div class="value">{{ country.start_of_week }}</div></div>
+                    <div class="item"><div class="label">Postal Code Format</div><div class="value">{{ country.postal_code_format }}</div></div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,22 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        input,
+        textarea {
+            margin-bottom: 1.5rem;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 10px 0 10px 3px rgba(118, 75, 162, 0.1);
+        }
+
+        input:hover,
+        textarea:hover {
+            color: #5a387e;
+            transform: translateY(-2px);
+
+
+
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        button {
+            background-color: #764ba2;
+            color: white;
+            font-weight: bold;
+            padding: 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: #5a387e;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
+
 <body>
     <form action="" method="post">
         {% csrf_token %}
-        <label for="" >NAME</label>
+        <label for="">NAME</label>
         <input type="text" name="name" placeholder="ENTER YOUR NAME">
-        <br><br>
-        <label for="" >EMAIL</label>
+
+        <label for="">EMAIL</label>
         <input type="email" name="email" placeholder="ENTER YOUR EMAIL">
-        <br><br>
-        <label for="" >QUERY</label>
+
+        <label for="">QUERY</label>
         <textarea name="text" id=""></textarea placeholder="ENTER YOUR QUERY">
-        <br><br>
+       
         <button type="submit">SUBMIT</button>
     </form>
 </body>
