@@ -12,7 +12,7 @@ def index(request):
         email = request.POST.get('email')
         text = request.POST.get('text')
         # print(name, email, text)
-        send_mail('thanks for your query',f'Hi {name},\n,{text}\nThank you for  reaching out to us. We have received your query and will get back to you        shortly.',settings.EMAIL_HOST_USER,[email],fail_silently=True)  
+        send_mail('thanks for your query',f'Hi {name},\n,{text}\nThank you for  reaching out to us. We have received your query and will get back to you shortly.',settings.EMAIL_HOST_USER,[email],fail_silently=True)  
         return HttpResponse('Email Sent Successfully..')
             
     return render(request, 'index.html')

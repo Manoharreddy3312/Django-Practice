@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 650px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 10px;
+            background: #00c6ff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0072ff;
+        }
+
+        /* ROW STYLE */
+        .row {
+            display: flex;
+            margin: 8px 0;
+            gap: 10px;
+        }
+
+        /* LABEL BOX */
+        .label {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        /* VALUE BOX */
+        .value {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: right;
+        }
+
+        /* HOVER EFFECT */
+        .row:hover .label {
+            background: #ff7b00;
+        }
+
+        .row:hover .value {
+            background: #ffa94d;
+            color: black;
+        }
+
+        .city {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #00ffff;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🌦 Weather App</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter city name">
+            <button type="submit">Get Weather</button>
+        </form>
+
+        {% if data %}
+
+        <div class="city">📍 {{data.name}}</div>
+
+        {% for i in data.weather %}
+        <div class="row">
+            <div class="label">WEATHER</div>
+            <div class="value">{{i.main}}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">DESCRIPTION</div>
+            <div class="value">{{i.description}}</div>
+        </div>
+        {% endfor %}
+
+        <div class="row">
+            <div class="label">TEMPERATURE</div>
+            <div class="value">{{data.main.temp}}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">HUMIDITY</div>
+            <div class="value">{{data.main.humidity}}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">PRESSURE</div>
+            <div class="value">{{data.main.pressure}}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">WIND SPEED</div>
+            <div class="value">{{data.wind.speed}}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">WIND DIRECTION</div>
+            <div class="value">{{data.wind.deg}}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">CLOUDINESS</div>
+            <div class="value">{{data.clouds.all}}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">SUNRISE</div>
+            <div class="value">{{data.sys.sunrise}}</div>
+        </div>
+
+        <div class="row">
+            <div class="label">SUNSET</div>
+            <div class="value">{{data.sys.sunset}}</div>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
