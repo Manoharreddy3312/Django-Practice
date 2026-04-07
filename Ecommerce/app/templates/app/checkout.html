@@ -1,0 +1,109 @@
+{% extends "app/base.html" %}
+{% block title %}Checkout - Ecommerce{% endblock %}
+
+{% block content %}
+  <div class="checkout-wrap reveal">
+    <div class="page-header">
+      <h1>Checkout</h1>
+      <p>Login/Registration required before placing an order.</p>
+    </div>
+
+    <div class="checkout-grid">
+      <div class="panel">
+        <h2 class="panel-title">Order Summary</h2>
+        <div class="summary-lines">
+          {% if cart_items %}
+            {% for item in cart_items %}
+              <div class="summary-line">
+                <div class="summary-left">
+                  <div class="summary-name">{{ item.name }}</div>
+                  <div class="muted">Qty: {{ item.quantity }} • ₹ {{ item.unit_price }}</div>
+                </div>
+                <div class="summary-right">₹ {{ item.subtotal }}</div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="muted">No items in cart.</div>
+          {% endif %}
+        </div>
+        <div class="summary-total">
+          <div class="muted">Total</div>
+          <div class="big">₹ {{ cart_total }}</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2 class="panel-title">Deliverd Details & Payment</h2>
+
+        {% if user.is_authenticated %}
+          <p class="muted">Step 1: delivery details</p>
+          <form class="form" method="post" action="/checkout/">
+            {% csrf_token %}
+            <div class="form-grid">
+              <div class="field">
+                <label>Full Name</label>
+                <input name="full_name" placeholder="John Doe" />
+              </div>
+              <div class="field">
+                <label>Phone</label>
+                <input name="phone" placeholder="99999 99999" />
+              </div>
+              <div class="field">
+                <label>Address Line 1</label>
+                <input name="address_line1" placeholder="Street, Area" />
+              </div>
+              <div class="field">
+                <label>City</label>
+                <input name="city" placeholder="City" />
+              </div>
+              <div class="field">
+                <label>State</label>
+                <input name="state" placeholder="State" />
+              </div>
+              <div class="field">
+                <label>Pincode</label>
+                <input name="pincode" placeholder="600001" />
+              </div>
+            </div>
+
+            <hr class="hr" />
+            <p class="muted">Step 2: bank details (demo UI)</p>
+            <div class="form-grid">
+              <div class="field">
+                <label>Bank Name</label>
+                <input name="bank_name" placeholder="SBI" />
+              </div>
+              <div class="field">
+                <label>Account Holder</label>
+                <input name="account_holder" placeholder="John Doe" />
+              </div>
+              <div class="field">
+                <label>Account Last 4</label>
+                <input name="account_last4" placeholder="1234" />
+              </div>
+            </div>
+
+            <div class="row row-end">
+              <a class="btn btn-solid"
+                 href="{% url 'razorpay_create_order' %}">
+                Pay with Razorpay
+              </a>
+            </div>
+          </form>
+        {% else %}
+          <div class="callout">
+            <div class="callout-title">Login required</div>
+            <p class="muted">
+              Please login first to place the order. If you are not registered, register an account.
+            </p>
+            <div class="row">
+              <a class="btn btn-ghost" href="/login/">Login</a>
+              <a class="btn btn-solid" href="/register/">Register</a>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

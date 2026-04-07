@@ -1,0 +1,31 @@
+{% extends "app/base.html" %}
+{% block title %}About - Ecommerce{% endblock %}
+
+{% block content %}
+  <div class="page-header reveal">
+    <h1>About</h1>
+    <p>
+      This is a demo Ecommerce project with session cart, authentication required at checkout,
+      Razorpay flow placeholders, email confirmation hooks, and a 72-hour order tracking UI.
+    </p>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card reveal">
+      <div class="card-ico">🔒</div>
+      <div class="card-title">Secure Checkout</div>
+      <div class="card-sub">Order flow prepared for Razorpay payment.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-ico">📧</div>
+      <div class="card-title">Email Confirm</div>
+      <div class="card-sub">After order placed, we send confirmation email.</div>
+    </div>
+    <div class="card reveal">
+      <div class="card-ico">📍</div>
+      <div class="card-title">Tracking</div>
+      <div class="card-sub">Auto-progress bar: placed, dispatched, delivered.</div>
+    </div>
+  </div>
+{% endblock %}
+

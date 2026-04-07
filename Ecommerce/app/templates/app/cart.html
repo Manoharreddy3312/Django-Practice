@@ -1,0 +1,63 @@
+{% extends "app/base.html" %}
+{% block title %}Cart - Ecommerce{% endblock %}
+
+{% block content %}
+  <div class="page-header reveal">
+    <h1>Your Cart</h1>
+    <p>Use + / - to change quantity. Total updates instantly on refresh.</p>
+  </div>
+
+  <div class="card">
+    <div class="cart-grid cart-header">
+      <div>Item</div>
+      <div>Unit Price</div>
+      <div>Quantity</div>
+      <div>Subtotal</div>
+      <div></div>
+    </div>
+
+    {% if cart_items %}
+      {% for item in cart_items %}
+        <div class="cart-grid cart-row reveal">
+          <div class="cart-item-name">
+            <div class="cart-item-ico">🧺</div>
+            <div>
+              <div class="cart-item-title">{{ item.name }}</div>
+              <div class="muted">ID: {{ item.product_id }}</div>
+            </div>
+          </div>
+          <div>₹ {{ item.unit_price }}</div>
+          <div class="qty">
+            <a class="qty-btn" href="{% url 'cart_decrement' product_id=item.product_id %}" aria-label="decrement">-</a>
+            <div class="qty-value">{{ item.quantity }}</div>
+            <a class="qty-btn" href="{% url 'cart_increment' product_id=item.product_id %}" aria-label="increment">+</a>
+          </div>
+          <div class="cart-subtotal">₹ {{ item.subtotal }}</div>
+          <div class="cart-actions">
+            <a class="link-danger" href="{% url 'cart_remove' product_id=item.product_id %}">Remove</a>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="empty">
+        <h3>Your cart is empty.</h3>
+        <p>Go to Electronics or Fashion and add some items.</p>
+        <div class="row">
+          <a class="btn btn-solid" href="{% url 'electronics' %}">Electronics</a>
+          <a class="btn btn-ghost" href="{% url 'fashion' %}">Fashion</a>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="cart-summary">
+      <div class="muted">Total</div>
+      <div class="cart-total">₹ {{ cart_total }}</div>
+    </div>
+
+    <div class="row row-end">
+      <a class="btn btn-ghost" href="{% url 'home' %}">Continue shopping</a>
+      <a class="btn btn-solid" href="{% url 'checkout' %}">Proceed to Checkout</a>
+    </div>
+  </div>
+{% endblock %}
+

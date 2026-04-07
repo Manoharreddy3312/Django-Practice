@@ -1,0 +1,102 @@
+{% extends "app/base.html" %}
+{% block title %}Order Tracking - Ecommerce{% endblock %}
+
+{% block content %}
+  <div class="page-header reveal">
+    <h1>Order Tracking</h1>
+    <p>Order #{{ order_id }} • Progress updates automatically for 72 hours.</p>
+  </div>
+
+  <div class="tracking">
+    <div class="stepper">
+      <div class="step">
+        <div class="step-dot" id="dot-placed">1</div>
+        <div class="step-content">
+          <div class="step-title">Placed</div>
+          <div class="step-sub" id="sub-placed">0-24 hours</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot" id="dot-dispatched">2</div>
+        <div class="step-content">
+          <div class="step-title">Dispatched</div>
+          <div class="step-sub" id="sub-dispatched">24-48 hours</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot" id="dot-delivered">3</div>
+        <div class="step-content">
+          <div class="step-title">Delivered</div>
+          <div class="step-sub" id="sub-delivered">48-72 hours</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-labels">
+        <div>50%</div>
+        <div>75%</div>
+        <div>100%</div>
+      </div>
+    </div>
+
+    <div class="track-message reveal" id="trackMessage">
+      Waiting for progress...
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const iso = "{{ order_created_at_iso|default:'' }}";
+      const msg = document.getElementById("trackMessage");
+      const fill = document.getElementById("progressFill");
+      const dotPlaced = document.getElementById("dot-placed");
+      const dotDispatched = document.getElementById("dot-dispatched");
+      const dotDelivered = document.getElementById("dot-delivered");
+
+      if (!iso) {
+        msg.textContent = "Order time not available in demo mode.";
+        return;
+      }
+
+      const placedAt = new Date(iso);
+      const now = new Date();
+      const elapsedMs = now - placedAt;
+      const elapsedHours = elapsedMs / (1000 * 60 * 60);
+
+      // 0-24h: 50% | 24-48h: 75% | 48-72h: 100%
+      let progressPct = 0;
+      let stage = "placed";
+      if (elapsedHours <= 24) {
+        progressPct = (elapsedHours / 24) * 50;
+        stage = "placed";
+      } else if (elapsedHours <= 48) {
+        progressPct = 50 + ((elapsedHours - 24) / 24) * 25;
+        stage = "dispatched";
+      } else {
+        progressPct = 75 + ((elapsedHours - 48) / 24) * 25;
+        if (progressPct >= 100) progressPct = 100;
+        stage = "delivered";
+      }
+
+      fill.style.width = progressPct.toFixed(1) + "%";
+
+      // Mark steps complete based on elapsed time.
+      const placedDone = elapsedHours >= 1; // just for visual cue
+      const dispatchedDone = elapsedHours >= 24;
+      const deliveredDone = elapsedHours >= 48;
+
+      dotPlaced.classList.toggle("step-active", placedDone);
+      dotDispatched.classList.toggle("step-active", dispatchedDone);
+      dotDelivered.classList.toggle("step-active", deliveredDone);
+
+      if (stage === "placed") msg.textContent = "Your order has been placed.";
+      if (stage === "dispatched") msg.textContent = "Your order has been dispatched.";
+      if (stage === "delivered") msg.textContent = "Your order has been delivered.";
+    })();
+  </script>
+{% endblock %}
+

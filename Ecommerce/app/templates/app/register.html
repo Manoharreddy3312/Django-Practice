@@ -1,0 +1,23 @@
+{% extends "app/base.html" %}
+{% block title %}Register - Ecommerce{% endblock %}
+
+{% block content %}
+  <div class="page-header reveal">
+    <h1>Create Account</h1>
+    <p>Register to place orders and track delivery.</p>
+  </div>
+
+  <div class="panel reveal" style="max-width: 560px; margin: 0 auto;">
+    <form method="post" class="form">
+      {% csrf_token %}
+      <div class="form-grid" style="grid-template-columns: 1fr;">
+        {{ form.as_p }}
+      </div>
+      <div class="row row-end" style="margin-top: 12px;">
+        <a class="btn btn-ghost" href="{% url 'login' %}">Already registered? Login</a>
+        <button class="btn btn-solid" type="submit">Register</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+

@@ -1,0 +1,20 @@
+{% extends "app/base.html" %}
+{% block title %}Electronics - Ecommerce{% endblock %}
+
+{% block content %}
+  <div class="page-header reveal">
+    <h1>Electronics</h1>
+    <p>Choose a section: mobiles, laptops, mixi, fan, cooler, fridge.</p>
+  </div>
+
+  <div class="grid grid-3">
+    {% for slug,label in categories %}
+      <a class="card card-link reveal" href="{% url 'electronics_category' slug=slug %}">
+        <div class="card-ico">⚡</div>
+        <div class="card-title">{{ label }}</div>
+        <div class="card-sub">Explore {{ label }}</div>
+      </a>
+    {% endfor %}
+  </div>
+{% endblock %}
+

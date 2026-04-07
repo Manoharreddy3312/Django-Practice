@@ -1,0 +1,23 @@
+{% extends "app/base.html" %}
+{% block title %}Login - Ecommerce{% endblock %}
+
+{% block content %}
+  <div class="page-header reveal">
+    <h1>Login</h1>
+    <p>Login to checkout, pay, and track orders.</p>
+  </div>
+
+  <div class="panel reveal" style="max-width: 560px; margin: 0 auto;">
+    <form method="post" class="form">
+      {% csrf_token %}
+      <div class="form-grid" style="grid-template-columns: 1fr;">
+        {{ form.as_p }}
+      </div>
+      <div class="row row-end" style="margin-top: 12px;">
+        <a class="btn btn-ghost" href="{% url 'register' %}">New user? Register</a>
+        <button class="btn btn-solid" type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+

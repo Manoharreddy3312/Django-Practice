@@ -1,0 +1,20 @@
+{% extends "app/base.html" %}
+{% block title %}Fashion - Ecommerce{% endblock %}
+
+{% block content %}
+  <div class="page-header reveal">
+    <h1>Fashion</h1>
+    <p>Mens Wear and Womens Wear collections.</p>
+  </div>
+
+  <div class="grid grid-2">
+    {% for slug,label in categories %}
+      <a class="card card-link reveal" href="{% url 'fashion_category' slug=slug %}">
+        <div class="card-ico">🛍️</div>
+        <div class="card-title">{{ label }}</div>
+        <div class="card-sub">Shop {{ label }}</div>
+      </a>
+    {% endfor %}
+  </div>
+{% endblock %}
+

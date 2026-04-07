@@ -1,0 +1,45 @@
+{% extends "app/base.html" %}
+{% block title %}Search - ShopNow{% endblock %}
+
+{% block content %}
+  <div class="page-header reveal">
+    <h1>Search</h1>
+    <p class="muted">
+      {% if q %}Results for <strong>"{{ q }}"</strong>{% else %}Type a keyword in the search bar.{% endif %}
+    </p>
+  </div>
+
+  <div class="grid grid-3">
+    {% for product in products %}
+      <div class="product-card reveal">
+        <div class="product-media">
+          <div class="product-badge">{{ product.category.name }}</div>
+          <div class="product-placeholder">
+            {% if product.image %}
+              <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-height:66px; object-fit:contain;" />
+            {% else %}
+              <span class="product-emoji">🛒</span>
+            {% endif %}
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">{{ product.name }}</div>
+          <div class="product-price">₹ {{ product.price }}</div>
+          <div class="muted" style="font-weight: 750; font-size: 13px;">
+            Free delivery • Easy returns
+          </div>
+          <div class="product-actions">
+            <a class="btn btn-solid" href="{% url 'cart_add' product_id=product.id %}">Add to cart</a>
+            <a class="btn btn-ghost" href="{% url 'cart' %}">View cart</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="empty">
+        <h3>No results found.</h3>
+        <p>Try searching: mobiles, laptop, fan, fridge, mens, womens…</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+
